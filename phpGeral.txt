@@ -1,0 +1,25 @@
+// lista o povo
+function listarCandidatos() {
+    // Conecta o DB
+    $conexao = new mysqli("localhost", "usuario", "senha", "banco_de_dados");
+
+    // SQL para selecionar e ordenar
+    $sql = "SELECT * FROM candidatos ORDER BY nome, sala_de_prova";
+    
+    // consulta SQL
+    $resultado = $conexao->query($sql);
+
+    // armazena os candidatos
+    $candidatos = [];
+    
+    // Loop q adiciona cada linha do resultado ao array de cand
+    while($row = $resultado->fetch_assoc()) {
+        $candidatos[] = $row;
+    }
+
+    // Fecha a conexão
+    $conexao->close();
+
+    // Retorna a lista
+    return $candidatos;
+}

@@ -1,0 +1,18 @@
+// inclui fiscal de prova
+function incluirFiscal($nome, $cpf, $sala_de_prova) {
+    // Conecta o DB
+    $conexao = new mysqli("localhost", "usuario", "senha", "banco_de_dados");
+
+    // ajeita para inserir novo fiscal no SQL 
+    $stmt = $conexao->prepare("INSERT INTO fiscais (nome, cpf, sala_de_prova) VALUES (?, ?, ?)");
+    
+    // Vincula os parâmetros à consulta SQL
+    $stmt->bind_param("ssi", $nome, $cpf, $sala_de_prova);
+
+    // consulta SQL
+    $stmt->execute();
+
+    // Fecha tudo
+    $stmt->close();
+    $conexao->close();
+}

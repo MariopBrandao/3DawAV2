@@ -1,0 +1,11 @@
+// lista os caboclo que vao fazer as provas
+function listarCandidatos() {
+    // Manda um GET pra API que volta os candidatos
+    fetch('https://suaapi.com/candidatos')
+        .then(response => response.json())  // Converte a resposta em JSON
+        .then(data => {
+            // 'data' contém a listagem
+            console.log(data);
+        })
+        .catch(error => console.error('Erro:', error));
+}

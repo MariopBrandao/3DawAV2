@@ -1,0 +1,22 @@
+// Inclui fiscal
+function incluirFiscal(nome, cpf, sala_de_prova) {
+    // Cria obj do fiscal
+    let fiscal = {nome: nome, cpf: cpf, sala_de_prova: sala_de_prova};
+
+    // Faz um POST pra um novo fiscal
+    fetch('https://suaapi.com/fiscais', {
+        method: 'POST',  // Método da requisição
+        headers: {
+            'Content-Type': 'application/json',  // Tipo de conteúdo enviado
+        },
+        body: JSON.stringify(fiscal),  // Converte obj fiscal em string JSON
+    })
+    .then(response => response.json())  // Converte resposta em JSON
+    .then(data => {
+        // 'data' contém a resposta da API
+        console.log(data);
+    })
+    .catch((error) => {
+        console.error('Erro:', error);
+    });
+}
